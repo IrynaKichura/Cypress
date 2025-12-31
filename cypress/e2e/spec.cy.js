@@ -1,4 +1,4 @@
-//const { beforeEach } = require('mocha');
+import { HomePage } from './PageObjects/homePage.js';
 
 describe('Block of first tests', () => {
   beforeEach(() => {
@@ -13,6 +13,8 @@ describe('Block of first tests', () => {
     cy.contains('contains').click();
   });
   it('third test', () => {
-    cy.get('.home-list').contains('get').click();
+    //cy.get('.home-list').contains('get').click();
+    const homePage = new HomePage();
+    homePage.listButton('get').should("be.visible");
   });
 });
