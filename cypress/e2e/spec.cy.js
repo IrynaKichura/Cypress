@@ -1,8 +1,13 @@
-//const { beforeEach } = require('mocha');
+import { HomePage } from './PageObjects/homePage.js';
+import { GetPage } from './PageObjects/GetPage.js';
 
 describe('Block of first tests', () => {
+  const homePage = new HomePage();
+  const getPage = new GetPage();
+
   beforeEach(() => {
-    cy.visit('/');
+    // cy.visit('/');
+    homePage.navigate();
   });
   it('first test', () => {
     //cy.visit('/commands/querying');
@@ -13,6 +18,19 @@ describe('Block of first tests', () => {
     cy.contains('contains').click();
   });
   it('third test', () => {
-    cy.get('.home-list').contains('get').click();
+    //cy.get('.home-list').contains('get').click();
+    const homePage = new HomePage();
+    homePage.listButton('get').should('be.visible').click();
+    getPage.button.should('be.visible');
+  });
+  it('fourth test', () => {
+    homePage.listButton('within').click();
+    getPage.inputEmail.type('email@io');
+    getPage.inputPassword.type('password');
+    getPage.inputName.type('OneName');
+  });
+  it('fifth test - simplified lesson19', () => {
+    homePage.listButton('get').click();
+    cy.url().should('contain', '/commands/querying');
   });
 });
