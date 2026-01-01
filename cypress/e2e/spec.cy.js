@@ -23,10 +23,14 @@ describe('Block of first tests', () => {
     homePage.listButton('get').should('be.visible').click();
     getPage.button.should('be.visible');
   });
-    it('fourth test', () => {
+  it('fourth test', () => {
     homePage.listButton('within').click();
     getPage.inputEmail.type('email@io');
     getPage.inputPassword.type('password');
     getPage.inputName.type('OneName');
+  });
+  it('fifth test - simplified lesson19', () => {
+    homePage.listButton('get').click();
+    cy.url().should('contain', '/commands/querying');
   });
 });
