@@ -23,3 +23,22 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+////////////////////////////////////////////////////////////
+import { GetPage } from '../Helpers/PageObjects/GetPage';
+
+const getPage = new GetPage();
+Cypress.Commands.add(
+  'login',
+  {
+    prevSubject: true,
+  },
+  (subject, email, password) => {
+    getPage.inputEmail.type(email);
+    getPage.inputPassword.type(password);
+    getPage.submitButton.click();
+    return undefined;
+  }
+);
+
+
