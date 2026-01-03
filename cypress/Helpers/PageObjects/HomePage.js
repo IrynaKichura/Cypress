@@ -1,9 +1,10 @@
 import { BasePage } from './BasePage.js';
+import BaseElement from   '../Elements/BaseElement';
 
 const url = '/';
 
 export class HomePage extends BasePage {
-
+#baseElement = new BaseElement();
   constructor() {
     super(url);
   }
@@ -11,11 +12,11 @@ export class HomePage extends BasePage {
   //   cy.visit(this.#url);
   // }
 
-  get list() {
-    return cy.get('.home-list');
-  }
+  // get list() {
+  //   return cy.get('.home-list');
+  // }
 
   listButton(text) {
-    return this.list.contains(text);
+    return this.#baseElement.getByText(text);
   }
 }
