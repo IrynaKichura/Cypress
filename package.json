@@ -8,7 +8,11 @@
     "cy:ui": "npx cypress open",
     "cy:headless": "npx cypress run --browser chrome --spec \"cypress\\e2e\\lesson21.cy.js\"",
     "cy:headless:dev": "npm run cy:headless -- --config-file \"cypress.dev.config.js\"",
-    "cy:headless:prod": "npm run cy:headless -- --config-file \"cypress.config.js\""
-    
+   "cy:headless:prod": "npm run cy:headless -- --config-file \"cypress.config.js\"",
+    "cy:ui:user1": "npx cypress run --browser chrome --reporter mochawesome --config-file \"cypress.user1.config.js\" --spec \"cypress\\e2e\\lesson21_hw.cy.js\"",
+    "cy:ui:user2": "npx cypress run --browser chrome --reporter mochawesome --config-file \"cypress.user2.config.js\" --spec \"cypress\\e2e\\lesson21_hw.cy.js\""
+  },
+  "dependencies": {
+    "mochawesome": "^7.1.4"
   }
 }
