@@ -6,9 +6,10 @@ module.exports = defineConfig({
     baseUrl: 'https://example.cypress.io',
   },
   //reporter: './myReporter.js',
-  // env: {
+   env: {
   //   "ACTION_PAGE_URL": "/commands/actions",
-  // },
+  login: ""
+   },
   viewportWidth: 1920,
   viewportHeight: 1080,
 });
