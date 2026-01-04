@@ -3,5 +3,9 @@
   "devDependencies": {
     "@faker-js/faker": "^10.1.0",
     "cypress": "^15.7.0"
+  },
+  "scripts": {
+    "cy:ui": "npx cypress open",
+    "cy:headless": "npx cypress run --browser chrome --spec \"cypress\\e2e\\lesson21.cy.js\""
   }
 }
