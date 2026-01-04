@@ -6,6 +6,9 @@
   },
   "scripts": {
     "cy:ui": "npx cypress open",
-    "cy:headless": "npx cypress run --browser chrome --spec \"cypress\\e2e\\lesson21.cy.js\""
+    "cy:headless": "npx cypress run --browser chrome --spec \"cypress\\e2e\\lesson21.cy.js\"",
+    "cy:headless:dev": "npm run cy:headless -- --config-file \"cypress.dev.config.js\"",
+    "cy:headless:prod": "npm run cy:headless -- --config-file \"cypress.config.js\""
+    
   }
 }

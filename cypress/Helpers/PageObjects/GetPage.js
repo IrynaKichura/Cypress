@@ -1,7 +1,13 @@
 import BaseElement from '../Elements/BaseElement.js';
+import { BasePage } from './BasePage.js';
 
-export class GetPage {
+const url = '/';
+export class GetPage extends BasePage {
   #baseElement = new BaseElement();
+
+  constructor() {
+    super(url);
+  }
 
   get submitButton() {
     return this.#baseElement.getElement('#query-btn');
