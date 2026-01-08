@@ -3,7 +3,8 @@ const { defineConfig } = require('cypress');
 module.exports = defineConfig({
   e2e: {
     setupNodeEvents(on, config) {},
-    baseUrl: 'https://example.cypress.io',
+    //baseUrl: 'https://example.cypress.io',
+    baseUrl: 'https://qauto.forstudy.space',
   },
   //reporter: './myReporter.js',
   // env: {
