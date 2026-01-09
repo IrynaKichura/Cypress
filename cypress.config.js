@@ -5,6 +5,7 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {},
     //baseUrl: 'https://example.cypress.io',
     baseUrl: 'https://qauto.forstudy.space',
+    watchForFileChanges: false,
   },
   //reporter: './myReporter.js',
   // env: {

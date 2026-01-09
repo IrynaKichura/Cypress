@@ -26,14 +26,43 @@ describe('My tests', () => {
     cy.request({
       method: 'POST',
       url: 'api/cars',
+      headers: {
+        Cookie: token,
+      },
+
       body: {
         carBrandId: 1,
         carModelId: 1,
         mileage: 122,
       },
+    }).then((response) => {
+      expect(response.status).to.eq(201);
+      console.log(response.body.data.id);
     });
-    // .then((response) => {
-    //   token = response.headers['set-cookie'][0].split(';')[0];
-    // });
+    let carsArray;
+    cy.request({
+      method: 'GET',
+      url: 'api/cars',
+      headers: {
+        Cookie: token,
+      },
+    }).then((response) => {
+      //expect(response.status).to.eq(201);
+      console.log(response.body.data);
+      carsArray = response.body.data;
+
+      carsArray.forEach((car) => {
+        cy.request({
+          method: 'DELETE',
+          url: `api/cars/${car.id}`,
+          headers: {
+            Cookie: token,
+          },
+        }).then((response) => {
+          expect(response.status).to.eq(200);
+          //console.log(response.body.data.id);
+        });
+      });
+    });
   });
 });
