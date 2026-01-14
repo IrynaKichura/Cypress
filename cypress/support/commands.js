@@ -55,3 +55,23 @@ Cypress.Commands.overwrite('type', (originalFn, element, text, options) => {
 
   return originalFn(element, text, options);
 });
+
+Cypress.Commands.add('createExpense', (carId, expenseData) => {
+  cy.request({
+    method: 'POST',
+    url: 'api/expenses',
+    body: {
+      carId,
+      reportedAt: expenseData.reportedAt,
+      mileage: expenseData.mileage,
+      liters: expenseData.liters,
+      totalCost: expenseData.totalCost,
+      forceMileage: false,
+    },
+  }).then((response) => {
+    expect(response.status).to.eq(200);
+    expect(response.body.data.carId).to.eq(carId);
+    expect(response.body.data.liters).to.eq(expenseData.liters);
+    expect(response.body.data.mileage).to.eq(expenseData.mileage);
+  });
+});
