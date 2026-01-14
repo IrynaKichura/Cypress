@@ -1,5 +1,7 @@
+import { ExpensesPage } from '../Helpers/PageObjects/ExpensesPage.js';
 import { GaragePage } from '../Helpers/PageObjects/GaragePage.js';
 const garagePage = new GaragePage();
+const expensePage = new ExpensesPage();
 describe('My tests', () => {
   before(() => {
     cy.request({
@@ -19,7 +21,7 @@ describe('My tests', () => {
     });
   });
 
-  it('test1', () => {
+  it('myTest', () => {
     let myCarId;
     cy.intercept({
       method: 'POST',
@@ -73,12 +75,26 @@ describe('My tests', () => {
 
       // });
       const today = new Date().toISOString().split('T')[0];
+      const [year, month, day] = today.split('-');
+      const formattedToday = `${day}.${month}.${year}`;
       cy.createExpense(myCarId, {
         reportedAt: today,
         mileage: 1100,
         liters: 11,
         totalCost: 11,
       });
+      cy.visit('/panel/expenses', {
+        auth: {
+          username: 'guest',
+          password: 'welcome2qauto',
+        },
+      });
+      expensePage.carList.should('have.text', 'BMW X5');
+      expensePage.editExpense.first().click({ force: true });
+      expensePage.expenseLiters.should('have.value', '11');
+      expensePage.expenseMileage.should('have.value', '1100');
+      expensePage.expenseCost.should('have.value', '11');
+      expensePage.reportDate.should('have.value', formattedToday);
     });
   });
 });
